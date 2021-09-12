@@ -1,9 +1,11 @@
 package model;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -17,8 +19,8 @@ public class InfrastructureDepartment {
 		
 	}
 	
-	public void addBillboard(double h, double w, boolean iU, String b) {
-		Billboard billboard = new Billboard(h,w,iU,b); 
+	public void addBillboard(double w, double h, boolean iU, String b) {
+		Billboard billboard = new Billboard(w,h,iU,b); 
 		billboards.add(billboard);
 	}
 	
@@ -41,12 +43,26 @@ public class InfrastructureDepartment {
 		
 	}
 	
-	public void importData(String fn) {
-		
+	public void importData(String fn) throws IOException {
+		BufferedReader br = new BufferedReader(new FileReader(fn));
+		String line = br.readLine();
+		while(line != null) {
+			String[] parts = line.split("|");
+			double w = Double.parseDouble(parts[0]);
+			double h = Double.parseDouble(parts[1]);
+			boolean iU = Boolean.parseBoolean(parts[2]);
+			Billboard billboard = new Billboard(w,h,iU,parts[3]); 
+			billboards.add(billboard);
+			line = br.readLine();
+		}
+		br.close();
 	}
 	
 	public String toString() {
-		
-		return x;
+		String show = "W      H      InUse      Brand\n";
+		for(int i=0; i<billboards.size(); i++) {
+			show += +billboards.get(i).getWidth()+"      "+billboards.get(i).getHeight()+"      "+billboards.get(i).getInUse()+"      "+billboards.get(i).getBrand()+"\n";
+		}
+		return show;
 	}
 }

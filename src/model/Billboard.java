@@ -10,8 +10,8 @@ public class Billboard implements Serializable{
 	private String brand;
 	
 	public Billboard(double h, double w, boolean iU, String b) {
-		height = h;
 		width = w;
+		height = h;
 		inUse = iU;
 		brand = b;
 	}
@@ -29,7 +29,7 @@ public class Billboard implements Serializable{
 		return width;
 	}
 
-	public boolean isInUse() {
+	public boolean getInUse() {
 		return inUse;
 	}
 
