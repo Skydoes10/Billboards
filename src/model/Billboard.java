@@ -9,7 +9,7 @@ public class Billboard implements Serializable{
 	private boolean inUse;
 	private String brand;
 	
-	public Billboard(double h, double w, boolean iU, String b) {
+	public Billboard(double w, double h, boolean iU, String b) {
 		width = w;
 		height = h;
 		inUse = iU;
