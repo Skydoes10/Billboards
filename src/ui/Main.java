@@ -10,17 +10,17 @@ public class Main {
 	private InfrastructureDepartment iD;
 	private Scanner sc;
 	
-	public Main(){
+	public Main() throws ClassNotFoundException, IOException{
 		sc = new Scanner(System.in);
 		iD = new InfrastructureDepartment();
 	}
 	
-	public static void main(String[] args) throws IOException {
+	public static void main(String[] args) throws IOException, ClassNotFoundException {
 		Main objMain = new Main();
 		objMain.menu();
 	}
 	
-	public void menu() throws IOException{
+	public void menu() throws IOException {
 		boolean menu = true;
 		importBds();
 		
@@ -74,7 +74,7 @@ public class Main {
 		System.out.println(iD.toString());
 	}
 	
-	public  void dangerousReport() throws IOException {
+	public void dangerousReport() throws IOException {
 		System.out.println(iD.exportDangerousBillboardReport("data/report.txt"));
 	}
 	

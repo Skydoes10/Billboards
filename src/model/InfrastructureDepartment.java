@@ -16,8 +16,9 @@ public class InfrastructureDepartment {
 	public String BILLBOARD_FILE_NAME = "data/billboard.bbd";
 	private	  ArrayList<Billboard> billboards;
 
-	public InfrastructureDepartment() {
+	public InfrastructureDepartment() throws ClassNotFoundException, IOException {
 		billboards = new ArrayList<Billboard>();
+		loadBillboards();
 	}
 	
 	public void addBillboard(double w, double h, boolean iU, String b) throws FileNotFoundException, IOException {
@@ -32,6 +33,7 @@ public class InfrastructureDepartment {
 		oos.close();
 	}
 	
+	@SuppressWarnings("unchecked")
 	private void loadBillboards() throws IOException, ClassNotFoundException {
 		File f = new File(BILLBOARD_FILE_NAME);
 		if(f.exists()) {
